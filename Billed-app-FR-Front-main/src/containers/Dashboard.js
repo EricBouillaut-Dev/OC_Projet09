@@ -145,9 +145,20 @@ export default class {
       this.counter ++
     }
 
+    // Purge des events click menu déroulant (fix)
+    // On supprime tous les évènements click en cours sur l'élémént (.off()), pour remettre le compteur à 0
     bills.forEach(bill => {
-      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      $(`#open-bill${bill.id}`).off().click((e) => {this.handleEditTicket(e, bill, bills);
+        console.log(bill);
+        console.log(this.counter);
+      })
     })
+
+    // bills.forEach(bill => {
+    //  $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills));
+    // console.log(bill);
+    //  console.log(this.counter);
+    // })
 
     return bills
 
