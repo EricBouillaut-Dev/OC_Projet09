@@ -23,7 +23,7 @@ export default class NewBill {
     const regexExtensionFile = new RegExp(`(jpg|jpeg|png)`, "i");
     if (!regexExtensionFile.test(file.name)) {
       console.log(file.name);
-      alert("L'extension du fichier n'est pas supporté (veuillez uploader uniquement des fichiers .jpg, .jpeg ou .png");
+      alert("L'extension du fichier n'est pas supportée (veuillez uploader uniquement des fichiers .jpg, .jpeg ou .png");
       e.target.value = "";
       return;
     } else {
