@@ -81,7 +81,23 @@ export default class {
   handleClickIconEye = () => {
     const billUrl = $('#icon-eye-d').attr("data-bill-url")
     const imgWidth = Math.floor($('#modaleFileAdmin1').width() * 0.8)
-    $('#modaleFileAdmin1').find(".modal-body").html(`<div style='text-align: center;'><img width=${imgWidth} src=${billUrl} alt="Bill"/></div>`)
+    const imageName = $('#file-name-admin').text();
+
+    const downloadButtonHtml = `
+    <div style='text-align: center;'>
+      <a href="${billUrl}" download="${imageName}">
+        <button style="color: white">Télécharger le justificatif</button>
+      </a>
+    </div>`;
+  
+  $('#modaleFileAdmin1').find(".modal-body").html(`
+    <div>
+      <img width=${imgWidth} src=${billUrl} alt="Bill"/>
+      ${downloadButtonHtml}
+    </div>`);
+
+
+    // $('#modaleFileAdmin1').find(".modal-body").html(`<div style='text-align: center;'><img width=${imgWidth} src=${billUrl} alt="Bill"/></div>`)
     if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFileAdmin1').modal('show')
   }
 
