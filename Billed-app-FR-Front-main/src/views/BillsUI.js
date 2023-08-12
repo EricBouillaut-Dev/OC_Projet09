@@ -24,13 +24,10 @@ const row = (bill) => {
 const rows = (data) => {
 	return data && data.length
 		? data
-				// Ajout du tri descendant pour les dates (fix)
-				.sort((a, b) => (a.date < b.date ? 1 : -1))
+				.sort((a, b) => (a.date < b.date ? 1 : -1)) // Ajout du tri descendant pour les dates (fix)
 				.map((bill) => row(bill))
 				.join(""): "";
 };
-
-
 
 export default ({ data: bills, loading, error }) => {
 	const modal = () => `
