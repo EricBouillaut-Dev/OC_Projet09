@@ -38,7 +38,8 @@ export default class {
             try {
               return {
                 ...doc,
-                date: formatDate(doc.date),
+								date: doc.date, // Modif date = date brute (fix bug date)
+								formatedDate: formatDate(doc.date), // Ajout de formatedDate = date formatée pour l'affichage (conversion chiffre en nom (Jan. Fev. etc...))
                 status: formatStatus(doc.status)
               }
             } catch(e) {

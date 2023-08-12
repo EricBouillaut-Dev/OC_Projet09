@@ -21,55 +21,15 @@ const row = (bill) => {
     `;
 };
 
-// On affichage des notes de frais de facon déçroissante sur les dates (fix) 
-
-const monthToNumber = (abbreviatedMonth) => {
-  const monthMap = {
-    'Jan.': "1",
-    'Fév.': "2",
-    'Mar.': "3",
-    'Avr.': "4",
-    'Mai': "5",
-    'Jui.': "6",
-    // Pas de conversion possible pour le mois de juillet (Jui.)
-    'Aoû.': "8",
-    'Sep.': "9",
-    'Oct.': "10",
-    'Nov.': "11",
-    'Déc.': "12"
-  };
-
-  return monthMap[abbreviatedMonth];
-};
-
-// Formatage des dates
-const parseDate = (dateStr) => {
-  const [day, month, year] = dateStr.split(' ');
-
-  // On converti l'année à un format complet (20yy)
-  const fullYear = `20${year}`;
-
-  // On converti le mois au format numérique
-  const monthNumber = monthToNumber(month);
-
-  return new Date(`${fullYear}-${monthNumber}-${day}`);
-};
-
-// Tri décroissant
 const rows = (data) => {
-  return data && data.length
-    ? data
-    .sort((a, b) => {
-      const dateA = parseDate(a.date);
-      const dateB = parseDate(b.date);
-      return dateB - dateA;
-    })
-    .map((bill) => {
-          return row(bill);
-        })
-        .join("")
-    : "";
+	return data && data.length
+		? data
+				// Ajout du tri descendant pour les dates (fix)
+				.sort((a, b) => (a.date < b.date ? 1 : -1))
+				.map((bill) => row(bill))
+				.join(""): "";
 };
+
 
 
 export default ({ data: bills, loading, error }) => {
