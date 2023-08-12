@@ -110,8 +110,7 @@ describe("Given I am connected as an employee", () => {
   });
 });
 
-
-// test d'intégration POST
+// test d'intégration POST et messages d'erreurs 404 et 500
 describe("Given I am a user connected as an employee", () => {
   describe("When I create a new bill", () => {
     test("Then it should fetches new bill to mock API POST and redirected me to Bills Page", async () => {

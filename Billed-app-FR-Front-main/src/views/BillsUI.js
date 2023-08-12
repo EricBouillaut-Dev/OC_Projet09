@@ -6,6 +6,7 @@ import Actions from "./Actions.js";
 
 const row = (bill) => {
 	const billDate = bill.formatedDate ?? bill.date;
+  
 	return `
     <tr data-testid="bill">
       <td data-testid="type">${bill.type}</td>
@@ -19,15 +20,17 @@ const row = (bill) => {
     </tr>
     `;
 };
+
 const rows = (data) => {
 	return data && data.length
 		? data
-				// Ajout du tri ascendant pour les date (fix)
+				// Ajout du tri descendant pour les dates (fix)
 				.sort((a, b) => (a.date < b.date ? 1 : -1))
 				.map((bill) => row(bill))
-				.join("")
-		: "";
+				.join(""): "";
 };
+
+
 
 export default ({ data: bills, loading, error }) => {
 	const modal = () => `
@@ -53,7 +56,7 @@ export default ({ data: bills, loading, error }) => {
 		return ErrorPage(error);
 	}
 
-	return `
+  return `
     <div class='layout'>
       ${VerticalLayout(120)}
       <div class='content'>
