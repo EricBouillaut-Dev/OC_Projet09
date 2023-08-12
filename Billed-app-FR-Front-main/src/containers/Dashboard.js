@@ -81,8 +81,11 @@ export default class {
   handleClickIconEye = () => {
     const billUrl = $('#icon-eye-d').attr("data-bill-url")
     const imgWidth = Math.floor($('#modaleFileAdmin1').width() * 0.8)
-    const imageName = $('#file-name-admin').text();
+    const imageName = $('#file-name-admin').text(); // On récupère le nom du fichier justificatif
 
+    // On ajoute un bouton pour télécharger le justificatif
+    // Note : Le fichier se télécharge mais le nom du fichier ne correspond pas au "imageName"
+    // Vu avec mon mentor, ceci est du à un bug sur le back, au niveau du httpHeader
     const downloadButtonHtml = `
     <div style='text-align: center;'>
       <a href="${billUrl}" download="${imageName}">
